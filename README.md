@@ -2,7 +2,7 @@
 
 Find the first relevant failure in noisy CI logs — locally, deterministically, and without uploading your data.
 
-> Project status: early MVP (`0.1.0`).
+> Project status: early MVP (`0.2.0`).
 
 ## Why FailLens?
 
@@ -13,6 +13,7 @@ CI logs often contain thousands of status lines, warnings, downloads, stack fram
 - Zero runtime dependencies.
 - Text, Markdown, and stable JSON output.
 - Works as a CLI and as an importable Node.js module.
+- Runs as a GitHub Action and writes a compact job summary.
 - Includes an Agent Skill for coding agents.
 
 The regression corpus currently covers representative logs from Jest, Pytest, TypeScript, Maven/Java, Rust, Go, .NET, Docker, npm dependency resolution, Node.js memory failures, ESLint, and GitHub Actions wrapper errors.
@@ -76,6 +77,29 @@ node ./bin/faillens.js build.log --fail-on-detection
 
 Run `node ./bin/faillens.js --help` for every option.
 
+## GitHub Action
+
+Capture a command's output in a log file, then analyze it even when the command fails:
+
+```yaml
+- name: Run tests and capture the log
+  id: tests
+  shell: bash
+  run: npm test > test-output.log 2>&1
+
+- name: Analyze the test log
+  id: faillens
+  if: failure() && steps.tests.outcome == 'failure'
+  uses: soaressilves/faillens@v0.2.0
+  with:
+    log-file: test-output.log
+    context: "2"
+```
+
+The original test failure still determines the job result. The Action writes its report to the GitHub job summary and exposes `status`, `category`, `confidence`, `fingerprint`, and `line` outputs. Set `fail-on-detection` to `true` when analyzing a log produced by a step that did not already fail the job.
+
+See the [GitHub Action guide](./docs/GITHUB-ACTION.md) for complete inputs, outputs, and workflow patterns.
+
 Validate the same artifact published to npm:
 
 ```bash
@@ -92,7 +116,7 @@ This command packs the project, installs it in a clean temporary directory, conf
 4. Prefer specific signals over wrapper messages such as `exit code 1`.
 5. Return the relevant line, nearby context, confidence, and a stable fingerprint.
 
-FailLens uses deterministic rules in `0.1.0`; it does not call an LLM. See the [quick start](./docs/QUICKSTART.md), [architecture](./docs/ARCHITECTURE.md), and [MVP scope](./docs/MVP-0.1.0.md).
+FailLens uses deterministic rules; it does not call an LLM. See the [quick start](./docs/QUICKSTART.md), [architecture](./docs/ARCHITECTURE.md), and [MVP scope](./docs/MVP-0.1.0.md).
 
 ## Use from JavaScript
 

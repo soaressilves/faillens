@@ -11,7 +11,7 @@
 ## Data flow
 
 ```text
-file or stdin
+file, stdin, or GitHub Action input
     ↓
 line normalization
     ↓
@@ -21,7 +21,7 @@ signal classification and ranking
     ↓
 primary failure + context + fingerprint
     ↓
-text, Markdown, or JSON formatter
+CLI output or GitHub job summary and outputs
 ```
 
 ## Modules
@@ -31,6 +31,8 @@ text, Markdown, or JSON formatter
 - `src/formatter.js`: output formats without detection logic.
 - `src/cli.js`: argument parsing and file/stdin handling.
 - `bin/faillens.js`: executable entry point.
+- `action.yml`: GitHub Action metadata, inputs, outputs, and Node.js runtime.
+- `action/index.js`: GitHub Action adapter for file input, outputs, job summaries, and enforcement.
 - `test/fixtures/`: sanitized cross-ecosystem regression corpus with expected results in `corpus.json`.
 - `scripts/verify-package.mjs`: clean-room installation and execution check for the packed npm artifact.
 
@@ -40,4 +42,4 @@ The JSON output contains `schemaVersion`. Additive fields may be introduced in a
 
 ## Future boundaries
 
-GitHub Actions, hosted history, optional AI explanations, and dashboards must consume the core result. They must not add network behavior to the local analyzer implicitly.
+Hosted history, optional AI explanations, and dashboards must consume the core result. They must not add network behavior to the local analyzer implicitly.

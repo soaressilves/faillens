@@ -6,6 +6,10 @@ import { fileURLToPath } from "node:url";
 
 const projectRoot = dirname(dirname(fileURLToPath(import.meta.url)));
 const npmCli = process.env.npm_execpath;
+const sourcePackage = JSON.parse(
+  await readFile(join(projectRoot, "package.json"), "utf8"),
+);
+const npmEnvironment = { ...process.env, npm_config_dry_run: "false" };
 
 if (!npmCli) {
   throw new Error("Run this verifier through npm: npm run verify:package");
@@ -17,7 +21,7 @@ try {
   const packOutput = execFileSync(
     process.execPath,
     [npmCli, "pack", "--json", "--pack-destination", temporaryRoot],
-    { cwd: projectRoot, encoding: "utf8" },
+    { cwd: projectRoot, encoding: "utf8", env: npmEnvironment },
   );
   const packResult = JSON.parse(packOutput);
   const tarball = join(temporaryRoot, packResult[0].filename);
@@ -32,7 +36,7 @@ try {
   execFileSync(
     process.execPath,
     [npmCli, "install", tarball, "--ignore-scripts", "--no-audit", "--no-fund"],
-    { cwd: consumer, stdio: "pipe" },
+    { cwd: consumer, stdio: "pipe", env: npmEnvironment },
   );
 
   const installedRoot = join(consumer, "node_modules", "@soaressilves", "faillens");
@@ -46,6 +50,8 @@ try {
     process.platform === "win32" ? "faillens.cmd" : "faillens",
   );
   await access(shim);
+  await access(join(installedRoot, "action.yml"));
+  await access(join(installedRoot, "action", "index.js"));
 
   const fixture = join(projectRoot, "examples", "github-actions-failure.log");
   const report = execFileSync(
@@ -55,7 +61,7 @@ try {
   );
   const result = JSON.parse(report);
 
-  if (installedPackage.version !== "0.1.0") {
+  if (installedPackage.version !== sourcePackage.version) {
     throw new Error(`Unexpected installed version: ${installedPackage.version}`);
   }
   if (result.primary?.category !== "test") {

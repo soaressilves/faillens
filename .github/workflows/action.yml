@@ -1,0 +1,47 @@
+name: Action integration
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  self-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Analyze fixture
+        id: analyze
+        uses: ./
+        with:
+          log-file: examples/github-actions-failure.log
+          context: "1"
+
+      - name: Verify outputs
+        env:
+          STATUS: ${{ steps.analyze.outputs.status }}
+          CATEGORY: ${{ steps.analyze.outputs.category }}
+          LINE: ${{ steps.analyze.outputs.line }}
+        run: |
+          test "$STATUS" = "failure"
+          test "$CATEGORY" = "test"
+          test "$LINE" = "5"
+
+      - name: Enforce detected failure
+        id: enforce
+        continue-on-error: true
+        uses: ./
+        with:
+          log-file: examples/github-actions-failure.log
+          fail-on-detection: "true"
+
+      - name: Verify enforcement
+        env:
+          OUTCOME: ${{ steps.enforce.outcome }}
+        run: test "$OUTCOME" = "failure"

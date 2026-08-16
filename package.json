@@ -1,6 +1,6 @@
 {
   "name": "@soaressilves/faillens",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Find the first relevant failure in CI logs without uploading data to external services.",
   "type": "module",
   "bin": {
@@ -11,6 +11,8 @@
   },
   "files": [
     "bin",
+    "action",
+    "action.yml",
     "src",
     "skills",
     "docs",
@@ -20,7 +22,7 @@
   "scripts": {
     "start": "node ./bin/faillens.js",
     "test": "node --test",
-    "check": "node --check ./src/analyzer.js && node --check ./src/formatter.js && node --check ./src/cli.js && node --check ./bin/faillens.js && node --check ./scripts/verify-package.mjs",
+    "check": "node --check ./src/analyzer.js && node --check ./src/formatter.js && node --check ./src/cli.js && node --check ./bin/faillens.js && node --check ./action/index.js && node --check ./scripts/verify-package.mjs",
     "verify:package": "node ./scripts/verify-package.mjs",
     "prepublishOnly": "npm run check && npm test && npm run verify:package"
   },

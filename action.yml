@@ -1,0 +1,36 @@
+name: FailLens CI Log Analysis
+description: Find the first relevant failure in a CI log and write a compact job summary.
+author: Paulo Soares Silves
+
+inputs:
+  log-file:
+    description: Path to the CI log file, relative to GITHUB_WORKSPACE or absolute.
+    required: true
+  context:
+    description: Number of lines to include before and after the detected failure.
+    required: false
+    default: "2"
+  fail-on-detection:
+    description: Fail the action when FailLens detects a relevant failure.
+    required: false
+    default: "false"
+
+outputs:
+  status:
+    description: Analysis status: failure or unknown.
+  category:
+    description: Detected failure category, or an empty value when inconclusive.
+  confidence:
+    description: Detection confidence, or an empty value when inconclusive.
+  fingerprint:
+    description: Stable fingerprint for the detected failure, or an empty value.
+  line:
+    description: One-based log line containing the detected failure, or an empty value.
+
+runs:
+  using: node24
+  main: action/index.js
+
+branding:
+  icon: search
+  color: blue

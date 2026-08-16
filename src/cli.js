@@ -3,7 +3,7 @@ import { stdin, stdout, stderr } from "node:process";
 import { analyzeLog } from "./analyzer.js";
 import { formatResult } from "./formatter.js";
 
-const VERSION = "0.1.0";
+const VERSION = "0.2.0";
 const FORMATS = new Set(["text", "markdown", "json"]);
 
 const HELP = `FailLens ${VERSION}
