@@ -1,4 +1,4 @@
 interface:
   display_name: "FailLens"
-  short_description: "Encontre a causa principal em logs de CI"
-  default_prompt: "Use $faillens para analisar este log e encontrar a primeira falha relevante."
+  short_description: "Find the root cause in noisy CI logs"
+  default_prompt: "Use $faillens to analyze this log and find the first relevant failure."

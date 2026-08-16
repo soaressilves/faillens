@@ -1,7 +1,7 @@
 {
   "name": "@soaressilves/faillens",
   "version": "0.1.0",
-  "description": "Encontre a primeira falha relevante em logs de CI sem enviar dados para serviços externos.",
+  "description": "Find the first relevant failure in CI logs without uploading data to external services.",
   "type": "module",
   "bin": {
     "faillens": "./bin/faillens.js"
@@ -13,6 +13,7 @@
     "bin",
     "src",
     "skills",
+    "docs",
     "README.md",
     "LICENSE"
   ],

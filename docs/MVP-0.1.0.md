@@ -33,4 +33,4 @@ Given a CI log, identify the most actionable early failure and return a compact 
 - [x] Test against a larger sanitized fixture corpus.
 - [x] Validate installation from the packed npm artifact.
 - [x] Publish the public GitHub repository.
-- [ ] Record a short terminal demonstration.
+- [x] Add a short terminal demonstration.

@@ -4,12 +4,12 @@ import { readFile } from "node:fs/promises";
 import { analyzeLog, cleanLine } from "../src/analyzer.js";
 import { formatResult } from "../src/formatter.js";
 
-test("remove ANSI, timestamp e marcador do GitHub Actions", () => {
+test("removes ANSI sequences, timestamps, and GitHub Actions markers", () => {
   const line = "2026-08-15T12:00:00.000Z ##[error]\u001b[31mTypeError: boom\u001b[0m";
   assert.equal(cleanLine(line), "TypeError: boom");
 });
 
-test("encontra a falha real antes do erro genérico de saída", async () => {
+test("finds the actionable failure before the generic exit error", async () => {
   const log = await readFile(new URL("../examples/github-actions-failure.log", import.meta.url), "utf8");
   const result = analyzeLog(log, { context: 1 });
 
@@ -23,7 +23,7 @@ test("encontra a falha real antes do erro genérico de saída", async () => {
   assert.match(result.primary.fingerprint, /^[a-f0-9]{12}$/);
 });
 
-test("reconhece um erro de compilação TypeScript", async () => {
+test("recognizes a TypeScript compiler error", async () => {
   const log = await readFile(new URL("../examples/typescript-failure.log", import.meta.url), "utf8");
   const result = analyzeLog(log);
 
@@ -31,21 +31,21 @@ test("reconhece um erro de compilação TypeScript", async () => {
   assert.match(result.primary.text, /TS2322/);
 });
 
-test("retorna inconclusivo quando não existe sinal de falha", () => {
-  const result = analyzeLog("PASS test/unit.test.js\nTudo certo\n");
+test("returns unknown when there is no failure signal", () => {
+  const result = analyzeLog("PASS test/unit.test.js\nEverything is fine\n");
   assert.equal(result.status, "unknown");
   assert.equal(result.primary, null);
 });
 
-test("gera relatórios em texto, Markdown e JSON", () => {
+test("generates text, Markdown, and JSON reports", () => {
   const result = analyzeLog("TypeError: cannot read properties of undefined\n at app.js:10:2");
-  assert.match(formatResult(result, "text"), /FALHA ENCONTRADA/);
+  assert.match(formatResult(result, "text"), /FAILURE FOUND/);
   assert.match(formatResult(result, "markdown"), /## FailLens/);
   assert.equal(JSON.parse(formatResult(result, "json")).primary.category, "runtime");
 });
 
-test("o fingerprint ignora mudanças de linha e caminho", () => {
-  const first = analyzeLog("TypeError: falhou em C:\\app\\src\\index.js:10:2");
-  const second = analyzeLog("TypeError: falhou em C:\\app\\src\\index.js:99:4");
+test("fingerprints ignore path line-number changes", () => {
+  const first = analyzeLog("TypeError: failed at C:\\app\\src\\index.js:10:2");
+  const second = analyzeLog("TypeError: failed at C:\\app\\src\\index.js:99:4");
   assert.equal(first.primary.fingerprint, second.primary.fingerprint);
 });

@@ -112,8 +112,8 @@ export function analyzeLog(input, options = {}) {
     schemaVersion: 1,
     status: primary ? "failure" : "unknown",
     summary: primary
-      ? `Primeira falha relevante na linha ${primary.line}: ${primary.text}`
-      : "Nenhuma falha relevante foi identificada.",
+      ? `First relevant failure at line ${primary.line}: ${primary.text}`
+      : "No relevant failure was identified.",
     primary,
     context,
     signals: candidates.slice(0, 10).map(({ wrapper, score, ...candidate }) => candidate),

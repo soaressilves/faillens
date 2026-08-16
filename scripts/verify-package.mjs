@@ -8,7 +8,7 @@ const projectRoot = dirname(dirname(fileURLToPath(import.meta.url)));
 const npmCli = process.env.npm_execpath;
 
 if (!npmCli) {
-  throw new Error("Execute este verificador por npm: npm run verify:package");
+  throw new Error("Run this verifier through npm: npm run verify:package");
 }
 
 const temporaryRoot = await mkdtemp(join(tmpdir(), "faillens-package-"));
@@ -56,13 +56,13 @@ try {
   const result = JSON.parse(report);
 
   if (installedPackage.version !== "0.1.0") {
-    throw new Error(`Versão instalada inesperada: ${installedPackage.version}`);
+    throw new Error(`Unexpected installed version: ${installedPackage.version}`);
   }
   if (result.primary?.category !== "test") {
-    throw new Error("A CLI instalada não encontrou a falha de teste esperada.");
+    throw new Error("The installed CLI did not find the expected test failure.");
   }
 
-  console.log(`Pacote ${installedPackage.name}@${installedPackage.version} instalado e executado com sucesso.`);
+  console.log(`Package ${installedPackage.name}@${installedPackage.version} installed and executed successfully.`);
 } finally {
   await rm(temporaryRoot, { recursive: true, force: true });
 }

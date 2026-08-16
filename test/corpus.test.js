@@ -24,13 +24,13 @@ for (const expectation of corpus) {
     assert.equal(result.primary.confidence, expectation.confidence);
     assert.ok(
       result.primary.text.includes(expectation.textIncludes),
-      `Esperava encontrar "${expectation.textIncludes}" em "${result.primary.text}"`,
+      `Expected to find "${expectation.textIncludes}" in "${result.primary.text}"`,
     );
     assert.match(result.primary.fingerprint, /^[a-f0-9]{12}$/);
   });
 }
 
-test("todo arquivo .log do corpus possui expectativa", async () => {
+test("every corpus .log file has an expectation", async () => {
   const { readdir } = await import("node:fs/promises");
   const files = (await readdir(fixtureDirectory))
     .filter((file) => file.endsWith(".log"))

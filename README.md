@@ -2,7 +2,7 @@
 
 Find the first relevant failure in noisy CI logs — locally, deterministically, and without uploading your data.
 
-> Project status: early MVP (`0.1.0`). The package has not been published to npm yet.
+> Project status: early MVP (`0.1.0`).
 
 ## Why FailLens?
 
@@ -17,9 +17,17 @@ CI logs often contain thousands of status lines, warnings, downloads, stack fram
 
 The regression corpus currently covers representative logs from Jest, Pytest, TypeScript, Maven/Java, Rust, Go, .NET, Docker, npm dependency resolution, Node.js memory failures, ESLint, and GitHub Actions wrapper errors.
 
-## Try it locally
+## Install
 
 Requirements: Node.js 20 or newer.
+
+```bash
+npm install --global @soaressilves/faillens
+faillens --version
+faillens path/to/build.log
+```
+
+## Try it from source
 
 ```bash
 git clone https://github.com/soaressilves/faillens.git
@@ -28,15 +36,17 @@ npm test
 node ./bin/faillens.js ./examples/github-actions-failure.log
 ```
 
+![FailLens terminal demonstration](./docs/demo.svg)
+
 Expected result:
 
 ```text
 FailLens
-Status: FALHA ENCONTRADA
-Categoria: test
-Confiança: high
+Status: FAILURE FOUND
+Category: test
+Confidence: high
 
-Causa provável — linha 5
+Likely cause — line 5
 AssertionError: expected status 200 but received 401
 ```
 
@@ -66,7 +76,7 @@ node ./bin/faillens.js build.log --fail-on-detection
 
 Run `node ./bin/faillens.js --help` for every option.
 
-Validate the same artifact that will eventually be published to npm:
+Validate the same artifact published to npm:
 
 ```bash
 npm run verify:package
@@ -82,7 +92,7 @@ This command packs the project, installs it in a clean temporary directory, conf
 4. Prefer specific signals over wrapper messages such as `exit code 1`.
 5. Return the relevant line, nearby context, confidence, and a stable fingerprint.
 
-FailLens uses deterministic rules in `0.1.0`; it does not call an LLM. See [Architecture](./docs/ARCHITECTURE.md) and [MVP scope](./docs/MVP-0.1.0.md).
+FailLens uses deterministic rules in `0.1.0`; it does not call an LLM. See the [quick start](./docs/QUICKSTART.md), [architecture](./docs/ARCHITECTURE.md), and [MVP scope](./docs/MVP-0.1.0.md).
 
 ## Use from JavaScript
 

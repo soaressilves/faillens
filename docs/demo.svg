@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="420" viewBox="0 0 1000 420" role="img" aria-labelledby="title description">
+  <title id="title">FailLens terminal demonstration</title>
+  <desc id="description">FailLens analyzes a GitHub Actions log and identifies the first relevant test failure.</desc>
+  <rect width="1000" height="420" rx="18" fill="#07162f"/>
+  <rect width="1000" height="54" rx="18" fill="#0d2346"/>
+  <rect y="36" width="1000" height="18" fill="#0d2346"/>
+  <circle cx="28" cy="27" r="7" fill="#ff6b6b"/>
+  <circle cx="52" cy="27" r="7" fill="#ffd166"/>
+  <circle cx="76" cy="27" r="7" fill="#38d99b"/>
+  <text x="105" y="34" fill="#94a2bc" font-family="Consolas, monospace" font-size="16">faillens — local CI log analysis</text>
+  <g font-family="Consolas, monospace" font-size="19">
+    <text x="34" y="94" fill="#55a1ff">$</text>
+    <text x="58" y="94" fill="#f3f6fc">faillens examples/github-actions-failure.log</text>
+    <text x="34" y="140" fill="#f3f6fc" font-weight="700">FailLens</text>
+    <text x="34" y="174" fill="#94a2bc">Status:</text>
+    <text x="138" y="174" fill="#38d99b" font-weight="700">FAILURE FOUND</text>
+    <text x="34" y="208" fill="#94a2bc">Category:</text>
+    <text x="158" y="208" fill="#f3f6fc">test</text>
+    <text x="34" y="242" fill="#94a2bc">Confidence:</text>
+    <text x="178" y="242" fill="#f3f6fc">high</text>
+    <text x="34" y="288" fill="#55a1ff" font-weight="700">Likely cause — line 5</text>
+    <text x="34" y="324" fill="#f3f6fc">AssertionError: expected status 200 but received 401</text>
+    <text x="34" y="370" fill="#94a2bc">No account · No API key · No log upload</text>
+  </g>
+</svg>

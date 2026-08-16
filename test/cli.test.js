@@ -20,13 +20,13 @@ function run(args, input = null) {
   });
 }
 
-test("mostra ajuda", async () => {
+test("shows help", async () => {
   const result = await run(["--help"]);
   assert.equal(result.code, 0);
-  assert.match(result.stdout, /Uso:/);
+  assert.match(result.stdout, /Usage:/);
 });
 
-test("a versão da CLI acompanha o package.json", async () => {
+test("CLI version matches package.json", async () => {
   const packageJson = JSON.parse(
     await readFile(new URL("../package.json", import.meta.url), "utf8"),
   );
@@ -35,25 +35,25 @@ test("a versão da CLI acompanha o package.json", async () => {
   assert.equal(result.stdout.trim(), packageJson.version);
 });
 
-test("analisa arquivo e produz JSON", async () => {
+test("analyzes a file and produces JSON", async () => {
   const result = await run([fixture, "--format", "json"]);
   assert.equal(result.code, 0);
   assert.equal(JSON.parse(result.stdout).primary.category, "test");
 });
 
-test("aceita log pelo stdin", async () => {
-  const result = await run(["-"], "Error: serviço indisponível\n");
+test("accepts a log through stdin", async () => {
+  const result = await run(["-"], "Error: service unavailable\n");
   assert.equal(result.code, 0);
-  assert.match(result.stdout, /FALHA ENCONTRADA/);
+  assert.match(result.stdout, /FAILURE FOUND/);
 });
 
-test("fail-on-detection retorna código 1", async () => {
+test("fail-on-detection returns exit code 1", async () => {
   const result = await run([fixture, "--fail-on-detection"]);
   assert.equal(result.code, 1);
 });
 
-test("opção inválida retorna código 2 e mensagem clara", async () => {
+test("an invalid option returns exit code 2 and a clear message", async () => {
   const result = await run([fixture, "--format", "xml"]);
   assert.equal(result.code, 2);
-  assert.match(result.stderr, /Formato inválido/);
+  assert.match(result.stderr, /Invalid format/);
 });

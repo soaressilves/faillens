@@ -8,22 +8,22 @@ const FORMATS = new Set(["text", "markdown", "json"]);
 
 const HELP = `FailLens ${VERSION}
 
-Encontre a primeira falha relevante em um log de CI.
+Find the first relevant failure in a CI log.
 
-Uso:
-  faillens caminho/para/build.log
-  comando-que-falha 2>&1 | faillens -
+Usage:
+  faillens path/to/build.log
+  failing-command 2>&1 | faillens -
 
-Opções:
-  -f, --format <formato>       text, markdown ou json (padrão: text)
-  -c, --context <linhas>       linhas antes e depois da falha (padrão: 2)
-  -o, --output <arquivo>       salva o relatório em um arquivo
-      --fail-on-detection      retorna código 1 quando encontrar uma falha
-  -h, --help                   mostra esta ajuda
-  -v, --version                mostra a versão
+Options:
+  -f, --format <format>        text, markdown, or json (default: text)
+  -c, --context <lines>        lines before and after the failure (default: 2)
+  -o, --output <file>          save the report to a file
+      --fail-on-detection      return exit code 1 when a failure is found
+  -h, --help                   show this help
+  -v, --version                show the version
 
-Privacidade:
-  O processamento é local. O FailLens não envia o log para a internet.
+Privacy:
+  Processing is local. FailLens does not send the log over the internet.
 `;
 
 function parseArguments(args) {
@@ -46,16 +46,16 @@ function parseArguments(args) {
     else if (argument === "-c" || argument === "--context") options.context = Number(args[++index]);
     else if (argument === "-o" || argument === "--output") options.output = args[++index];
     else if (argument === "-") options.input = argument;
-    else if (argument.startsWith("-")) throw new Error(`Opção desconhecida: ${argument}`);
-    else if (options.input) throw new Error("Informe apenas um arquivo de entrada.");
+    else if (argument.startsWith("-")) throw new Error(`Unknown option: ${argument}`);
+    else if (options.input) throw new Error("Provide only one input file.");
     else options.input = argument;
   }
 
   if (!FORMATS.has(options.format)) {
-    throw new Error(`Formato inválido: ${options.format}. Use text, markdown ou json.`);
+    throw new Error(`Invalid format: ${options.format}. Use text, markdown, or json.`);
   }
   if (!Number.isInteger(options.context) || options.context < 0 || options.context > 20) {
-    throw new Error("O contexto deve ser um número inteiro entre 0 e 20.");
+    throw new Error("Context must be an integer between 0 and 20.");
   }
   return options;
 }
@@ -80,7 +80,7 @@ export async function main(args = process.argv.slice(2)) {
 
     const useStdin = options.input === "-" || (!options.input && !stdin.isTTY);
     if (!options.input && !useStdin) {
-      throw new Error("Informe um arquivo de log ou envie o conteúdo pelo pipe. Use --help para exemplos.");
+      throw new Error("Provide a log file or pipe content through stdin. Use --help for examples.");
     }
 
     const input = useStdin ? await readStdin() : await readFile(options.input, "utf8");

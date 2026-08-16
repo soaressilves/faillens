@@ -11,23 +11,23 @@ export function formatText(result) {
   if (!result.primary) {
     return [
       "FailLens",
-      "Status: INCONCLUSIVO",
+      "Status: INCONCLUSIVE",
       result.summary,
-      `Linhas analisadas: ${result.stats.totalLines}`,
+      `Lines analyzed: ${result.stats.totalLines}`,
     ].join("\n");
   }
 
   return [
     "FailLens",
-    "Status: FALHA ENCONTRADA",
-    `Categoria: ${result.primary.category}`,
-    `Confiança: ${result.primary.confidence}`,
+    "Status: FAILURE FOUND",
+    `Category: ${result.primary.category}`,
+    `Confidence: ${result.primary.confidence}`,
     `Fingerprint: ${result.primary.fingerprint}`,
     "",
-    `Causa provável — linha ${result.primary.line}`,
+    `Likely cause — line ${result.primary.line}`,
     result.primary.text,
     "",
-    "Contexto",
+    "Context",
     ...contextLines(result),
   ].join("\n");
 }
@@ -35,26 +35,26 @@ export function formatText(result) {
 export function formatMarkdown(result) {
   if (!result.primary) {
     return [
-      "## FailLens: análise inconclusiva",
+      "## FailLens: inconclusive analysis",
       "",
       result.summary,
       "",
-      `- Linhas analisadas: ${result.stats.totalLines}`,
-      `- Linhas ignoradas como ruído: ${result.stats.noiseLines}`,
+      `- Lines analyzed: ${result.stats.totalLines}`,
+      `- Lines ignored as noise: ${result.stats.noiseLines}`,
     ].join("\n");
   }
 
   return [
-    "## FailLens: primeira falha relevante",
+    "## FailLens: first relevant failure",
     "",
     `**${result.primary.text}**`,
     "",
-    `- Linha: ${result.primary.line}`,
-    `- Categoria: ${result.primary.category}`,
-    `- Confiança: ${result.primary.confidence}`,
+    `- Line: ${result.primary.line}`,
+    `- Category: ${result.primary.category}`,
+    `- Confidence: ${result.primary.confidence}`,
     `- Fingerprint: \`${result.primary.fingerprint}\``,
     "",
-    "<details><summary>Contexto do log</summary>",
+    "<details><summary>Log context</summary>",
     "",
     "```text",
     ...contextLines(result),

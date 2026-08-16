@@ -4,15 +4,6 @@ All notable changes to this project will be documented here. The format follows 
 
 ## [Unreleased]
 
-### Added
-
-- Sanitized regression corpus for Pytest, Maven, Rust, Go, .NET, Docker, npm, Node.js, and ESLint logs.
-- Clean-room verification that packs, installs, and runs the npm artifact.
-
-### Changed
-
-- More specific compiler, dependency, lint, and exit-wrapper detection.
-
 ### Planned
 
 - Package a GitHub Action after the local CLI proves useful.
@@ -27,3 +18,9 @@ All notable changes to this project will be documented here. The format follows 
 - Context lines and stable failure fingerprints.
 - Optional non-zero exit code on detection.
 - Automated tests, examples, community files, and Agent Skill.
+- Sanitized regression corpus for Pytest, Maven, Rust, Go, .NET, Docker, npm, Node.js, and ESLint logs.
+- Clean-room verification that packs, installs, and runs the npm artifact.
+
+### Changed
+
+- More specific compiler, dependency, lint, and exit-wrapper detection.
