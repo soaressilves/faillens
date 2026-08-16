@@ -1,0 +1,46 @@
+{
+  "name": "@soaressilves/faillens",
+  "version": "0.1.0",
+  "description": "Encontre a primeira falha relevante em logs de CI sem enviar dados para serviços externos.",
+  "type": "module",
+  "bin": {
+    "faillens": "./bin/faillens.js"
+  },
+  "exports": {
+    ".": "./src/analyzer.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "skills",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "start": "node ./bin/faillens.js",
+    "test": "node --test",
+    "check": "node --check ./src/analyzer.js && node --check ./src/formatter.js && node --check ./src/cli.js && node --check ./bin/faillens.js",
+    "prepublishOnly": "npm run check && npm test"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "ci",
+    "logs",
+    "debugging",
+    "github-actions",
+    "cli",
+    "ai-agents"
+  ],
+  "author": "Paulo Soares Silves",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soaressilves/faillens.git"
+  },
+  "bugs": {
+    "url": "https://github.com/soaressilves/faillens/issues"
+  },
+  "homepage": "https://github.com/soaressilves/faillens#readme"
+}

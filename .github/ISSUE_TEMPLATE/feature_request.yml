@@ -1,0 +1,31 @@
+name: Feature request
+description: Propose a focused improvement
+title: "feat: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem to solve
+      description: Describe the recurring CI-log problem, not only the desired implementation.
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: Sanitized example
+      description: Show a minimal input and the useful expected result. Never include secrets.
+    validations:
+      required: true
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Main interface
+      options:
+        - CLI
+        - JSON API
+        - Markdown report
+        - Agent Skill
+        - Future GitHub Action
+    validations:
+      required: true

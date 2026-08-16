@@ -1,0 +1,9 @@
+2026-08-15T12:00:01.001Z ##[group]Run npm test
+2026-08-15T12:00:01.110Z npm info using npm@10.9.2
+2026-08-15T12:00:02.200Z PASS test/config.test.js
+2026-08-15T12:00:02.540Z FAIL test/auth.test.js
+2026-08-15T12:00:02.541Z AssertionError: expected status 200 but received 401
+2026-08-15T12:00:02.542Z     at test/auth.test.js:42:18
+2026-08-15T12:00:02.700Z Tests failed: 1
+2026-08-15T12:00:02.900Z Error: Process completed with exit code 1.
+2026-08-15T12:00:02.901Z ##[endgroup]

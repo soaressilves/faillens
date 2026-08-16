@@ -1,0 +1,7 @@
+[12:40:01] Starting compilation in watch mode...
+src/services/payment.ts:18:7 - error TS2322: Type 'string' is not assignable to type 'number'.
+
+18 const amount: number = payload.amount;
+         ~~~~~~
+
+Found 1 error. Watching for file changes.
