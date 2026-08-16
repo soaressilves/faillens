@@ -32,5 +32,5 @@ Given a CI log, identify the most actionable early failure and return a compact 
 - [x] Automated tests cover core and CLI behavior.
 - [ ] Test against a larger public fixture corpus.
 - [ ] Validate installation from the packed npm artifact.
-- [ ] Publish the public GitHub repository.
+- [x] Publish the public GitHub repository.
 - [ ] Record a short terminal demonstration.
