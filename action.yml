@@ -17,7 +17,7 @@ inputs:
 
 outputs:
   status:
-    description: Analysis status: failure or unknown.
+    description: "Analysis status: failure or unknown."
   category:
     description: Detected failure category, or an empty value when inconclusive.
   confidence:
