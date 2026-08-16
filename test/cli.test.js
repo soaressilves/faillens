@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
+import { readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 
 const cli = fileURLToPath(new URL("../bin/faillens.js", import.meta.url));
@@ -23,6 +24,15 @@ test("mostra ajuda", async () => {
   const result = await run(["--help"]);
   assert.equal(result.code, 0);
   assert.match(result.stdout, /Uso:/);
+});
+
+test("a versão da CLI acompanha o package.json", async () => {
+  const packageJson = JSON.parse(
+    await readFile(new URL("../package.json", import.meta.url), "utf8"),
+  );
+  const result = await run(["--version"]);
+  assert.equal(result.code, 0);
+  assert.equal(result.stdout.trim(), packageJson.version);
 });
 
 test("analisa arquivo e produz JSON", async () => {

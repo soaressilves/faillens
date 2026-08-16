@@ -1,0 +1,5 @@
+go test ./...
+# example.com/faillens/cmd
+cmd/main.go:18:12: undefined: NewClient
+FAIL    example.com/faillens/cmd [build failed]
+FAIL

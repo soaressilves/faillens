@@ -19,8 +19,9 @@
   "scripts": {
     "start": "node ./bin/faillens.js",
     "test": "node --test",
-    "check": "node --check ./src/analyzer.js && node --check ./src/formatter.js && node --check ./src/cli.js && node --check ./bin/faillens.js",
-    "prepublishOnly": "npm run check && npm test"
+    "check": "node --check ./src/analyzer.js && node --check ./src/formatter.js && node --check ./src/cli.js && node --check ./bin/faillens.js && node --check ./scripts/verify-package.mjs",
+    "verify:package": "node ./scripts/verify-package.mjs",
+    "prepublishOnly": "npm run check && npm test && npm run verify:package"
   },
   "engines": {
     "node": ">=20"

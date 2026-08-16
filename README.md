@@ -15,6 +15,8 @@ CI logs often contain thousands of status lines, warnings, downloads, stack fram
 - Works as a CLI and as an importable Node.js module.
 - Includes an Agent Skill for coding agents.
 
+The regression corpus currently covers representative logs from Jest, Pytest, TypeScript, Maven/Java, Rust, Go, .NET, Docker, npm dependency resolution, Node.js memory failures, ESLint, and GitHub Actions wrapper errors.
+
 ## Try it locally
 
 Requirements: Node.js 20 or newer.
@@ -63,6 +65,14 @@ node ./bin/faillens.js build.log --fail-on-detection
 ```
 
 Run `node ./bin/faillens.js --help` for every option.
+
+Validate the same artifact that will eventually be published to npm:
+
+```bash
+npm run verify:package
+```
+
+This command packs the project, installs it in a clean temporary directory, confirms the generated executable, runs the installed CLI, and removes the temporary files.
 
 ## How the MVP works
 

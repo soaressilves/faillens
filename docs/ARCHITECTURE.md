@@ -26,11 +26,13 @@ text, Markdown, or JSON formatter
 
 ## Modules
 
-- `src/patterns.js`: ordered detection and noise rules.
+- `src/patterns.js`: ordered detection and noise rules for dependency, compiler, runtime, test, lint, command, exit, and generic errors.
 - `src/analyzer.js`: normalization, classification, ranking, and fingerprints.
 - `src/formatter.js`: output formats without detection logic.
 - `src/cli.js`: argument parsing and file/stdin handling.
 - `bin/faillens.js`: executable entry point.
+- `test/fixtures/`: sanitized cross-ecosystem regression corpus with expected results in `corpus.json`.
+- `scripts/verify-package.mjs`: clean-room installation and execution check for the packed npm artifact.
 
 ## Compatibility policy
 

@@ -1,0 +1,9 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.5, pytest-8.3.2
+collected 12 items
+tests/test_api.py .......F....
+________________________________ test_profile _________________________________
+E   AssertionError: assert 401 == 200
+E    +  where 401 = response.status_code
+=========================== 1 failed, 11 passed in 0.42s =======================
+Error: Process completed with exit code 1.

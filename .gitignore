@@ -3,6 +3,7 @@ coverage/
 dist/
 *.log
 !examples/*.log
+!test/fixtures/*.log
 .env
 .env.*
 !.env.example

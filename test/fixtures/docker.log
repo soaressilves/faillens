@@ -1,0 +1,5 @@
+#8 [builder 4/6] RUN pnpm install --frozen-lockfile
+#8 0.212 /bin/sh: 1: pnpm: not found
+#8 ERROR: process "/bin/sh -c pnpm install --frozen-lockfile" did not complete successfully: exit code: 127
+------
+failed to solve: process "/bin/sh -c pnpm install --frozen-lockfile" did not complete successfully

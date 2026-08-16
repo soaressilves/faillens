@@ -1,0 +1,3 @@
+Run custom-tool --check
+The tool stopped before producing diagnostic output.
+Error: Process completed with exit code 1.

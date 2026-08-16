@@ -1,0 +1,8 @@
+[INFO] Scanning for projects...
+[INFO] Compiling 18 source files
+[ERROR] COMPILATION ERROR :
+[ERROR] /home/runner/work/app/src/main/java/App.java:[17,28] cannot find symbol
+[ERROR]   symbol:   class PaymentClient
+[ERROR]   location: class App
+[INFO] BUILD FAILURE
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:compile

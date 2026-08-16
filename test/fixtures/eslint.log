@@ -1,0 +1,7 @@
+> sample-app@1.0.0 lint
+> eslint src
+
+src/app.js
+  12:5  error  'token' is not defined  no-undef
+
+✖ 1 problem (1 error, 0 warnings)

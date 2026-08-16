@@ -8,6 +8,7 @@ Use Node.js 20 ou superior:
 
 ```powershell
 npm test
+npm run verify:package
 node .\bin\faillens.js .\examples\github-actions-failure.log
 node .\bin\faillens.js .\examples\typescript-failure.log --format json
 ```
@@ -26,3 +27,5 @@ npm test 2>&1 | node .\bin\faillens.js -
 - **Contexto:** linhas próximas que ajudam a investigar.
 
 O FailLens aponta onde começar. A correção ainda deve ser confirmada executando o teste ou comando que falhou.
+
+O corpus automatizado atual possui exemplos sanitizados de Jest, Pytest, TypeScript, Maven/Java, Rust, Go, .NET, Docker, npm, falta de memória no Node.js, ESLint e mensagens finais do GitHub Actions.

@@ -1,0 +1,80 @@
+[
+  {
+    "file": "pytest.log",
+    "status": "failure",
+    "category": "test",
+    "confidence": "high",
+    "textIncludes": "AssertionError"
+  },
+  {
+    "file": "maven.log",
+    "status": "failure",
+    "category": "compiler",
+    "confidence": "high",
+    "textIncludes": "cannot find symbol"
+  },
+  {
+    "file": "rust.log",
+    "status": "failure",
+    "category": "compiler",
+    "confidence": "high",
+    "textIncludes": "error[E0382]"
+  },
+  {
+    "file": "go.log",
+    "status": "failure",
+    "category": "compiler",
+    "confidence": "high",
+    "textIncludes": "undefined: NewClient"
+  },
+  {
+    "file": "dotnet.log",
+    "status": "failure",
+    "category": "compiler",
+    "confidence": "high",
+    "textIncludes": "error CS0246"
+  },
+  {
+    "file": "docker.log",
+    "status": "failure",
+    "category": "dependency",
+    "confidence": "high",
+    "textIncludes": "pnpm: not found"
+  },
+  {
+    "file": "npm-dependency.log",
+    "status": "failure",
+    "category": "dependency",
+    "confidence": "high",
+    "textIncludes": "ERESOLVE"
+  },
+  {
+    "file": "node-oom.log",
+    "status": "failure",
+    "category": "runtime",
+    "confidence": "high",
+    "textIncludes": "heap out of memory"
+  },
+  {
+    "file": "eslint.log",
+    "status": "failure",
+    "category": "lint",
+    "confidence": "high",
+    "textIncludes": "no-undef"
+  },
+  {
+    "file": "wrapper-only.log",
+    "status": "failure",
+    "category": "exit",
+    "confidence": "low",
+    "textIncludes": "exit code 1"
+  },
+  {
+    "file": "successful-build.log",
+    "status": "unknown"
+  },
+  {
+    "file": "warnings-only.log",
+    "status": "unknown"
+  }
+]

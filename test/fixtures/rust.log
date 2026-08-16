@@ -1,0 +1,9 @@
+   Compiling faillens-fixture v0.1.0
+error[E0382]: borrow of moved value: `config`
+  --> src/main.rs:18:20
+   |
+12 |     start(config);
+   |           ------ value moved here
+18 |     println!("{}", config.name);
+   |                    ^^^^^^^^^^^ value borrowed here after move
+error: could not compile `faillens-fixture` due to 1 previous error

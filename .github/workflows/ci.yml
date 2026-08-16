@@ -28,5 +28,5 @@ jobs:
         run: npm run check
       - name: Test
         run: npm test
-      - name: Validate package contents
-        run: npm pack --dry-run
+      - name: Install and run packed CLI
+        run: npm run verify:package

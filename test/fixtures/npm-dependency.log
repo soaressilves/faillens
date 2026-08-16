@@ -1,0 +1,6 @@
+npm error code ERESOLVE
+npm error ERESOLVE unable to resolve dependency tree
+npm error While resolving: sample-app@1.0.0
+npm error Found: react@19.0.0
+npm error Could not resolve dependency:
+npm error peer react@"^18.0.0" from sample-widget@2.0.0

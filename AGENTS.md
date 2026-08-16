@@ -17,7 +17,7 @@ Run:
 ```bash
 npm run check
 npm test
-npm pack --dry-run
+npm run verify:package
 ```
 
 ## Compatibility

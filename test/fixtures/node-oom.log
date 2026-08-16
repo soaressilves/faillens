@@ -1,0 +1,6 @@
+<--- Last few GCs --->
+[2041:0x55] 30124 ms: Mark-Compact 2047.1 (2082.5) -> 2046.7 MB
+FATAL ERROR: Reached heap limit Allocation failed - JavaScript heap out of memory
+ 1: 0xb7a940 node::Abort()
+ 2: 0xa8e823 node::FatalError(char const*, char const*)
+Aborted (core dumped)
