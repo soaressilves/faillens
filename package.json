@@ -4,7 +4,7 @@
   "description": "Find the first relevant failure in CI logs without uploading data to external services.",
   "type": "module",
   "bin": {
-    "faillens": "./bin/faillens.js"
+    "faillens": "bin/faillens.js"
   },
   "exports": {
     ".": "./src/analyzer.js"
