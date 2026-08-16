@@ -1,8 +1,15 @@
 # FailLens
 
+[![npm version](https://img.shields.io/npm/v/%40soaressilves%2Ffaillens?logo=npm)](https://www.npmjs.com/package/@soaressilves/faillens)
+[![GitHub Marketplace](https://img.shields.io/badge/Marketplace-FailLens-2ea44f?logo=github)](https://github.com/marketplace/actions/faillens-ci-log-analysis)
+[![CI](https://github.com/soaressilves/faillens/actions/workflows/ci.yml/badge.svg)](https://github.com/soaressilves/faillens/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
+
 Find the first relevant failure in noisy CI logs — locally, deterministically, and without uploading your data.
 
 > Project status: early MVP (`0.2.0`).
+
+![FailLens finds the first relevant CI failure](./docs/social-preview.png)
 
 ## Why FailLens?
 
